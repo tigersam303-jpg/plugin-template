@@ -2,6 +2,7 @@ package com.example
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
+import android.content.Context
 
 class MyWebsiteProvider : MainAPI() {
     override var mainUrl = "https://new.katdrama.my/"
@@ -53,5 +54,11 @@ class MyWebsiteProvider : MainAPI() {
         val document = app.get(data).document
         // Add your video extraction logic here
         return true
+    }
+}
+@CloudStreamPlugin
+class MyWebsitePlugin : Plugin() {
+    override fun load(context: Context) {
+        registerMainAPI(MyWebsiteProvider())
     }
 }
